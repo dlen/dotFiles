@@ -7,7 +7,8 @@ set cursorline
 "Setting no vim compat
 set nocp
 ""Set nerdtree to be launched on start and cursor set to editing window
-autocmd VimEnter * wincmd p
+"autocmd VimEnter * NERDTree
+"autocmd VimEnter * wincmd p
 """"""""""""""""""""""""""""""""""""mouse
 "allows mouse selection to go into visual mode and more
 set mouse=a
