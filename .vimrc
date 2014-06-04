@@ -7,8 +7,7 @@ set cursorline
 "Setting no vim compat
 set nocp
 ""Set nerdtree to be launched on start and cursor set to editing window
-"autocmd VimEnter * NERDTree
-"autocmd VimEnter * wincmd p
+autocmd VimEnter * wincmd p
 """"""""""""""""""""""""""""""""""""mouse
 "allows mouse selection to go into visual mode and more
 set mouse=a
@@ -118,6 +117,21 @@ if ! has('gui_running')
         augroup END
 endif
 """"""""""""""""""""""""""""""""""""Powerline
+""""""""""""""""""""""""""""""""""""Tabularize
+" tabularize by selection in visual mode
+vmap <leader>t y:Tabularize /<C-R>"/<CR>
+" tabularize =
+nmap <leader>t= :Tabularize /^[^=]*\zs=/<CR>
+nmap <leader>te :Tabularize /^[^=]*\zs=/<CR>
+" tabularize =>
+nmap <leader>th :Tabularize /^[^=>]*\zs=>/<CR>
+" tabularize {
+nmap <leader>t{ :Tabularize /^[^{]*\zs{/<CR>
+nmap <leader>tB :Tabularize /^[^{]*\zs{/<CR>
+" tabularize (
+nmap <leader>t( :Tabularize /^[^(]*\zs(/<CR>
+nmap <leader>tb :Tabularize /^[^(]*\zs(/<CR>
+""""""""""""""""""""""""""""""""""""Tabularize
 """"""""""""""""""""""""""""""""""""Unite
 "Set ag as default finder
 let g:unite_source_grep_command = 'ag'
@@ -149,7 +163,11 @@ nnoremap <silent> <Leader>r :Unite -silent -buffer-name=recent -auto-resize file
 "maps \b to navigate open buffers
 nnoremap <Leader>b :Unite -silent -buffer-name=buffers -auto-resize buffer<cr>
 """"""""""""""""""""""""""""""""""""Unite
-""""""""""""""""""""""""""""""""""""Disable arrows
+""""""""""""""""""""""""""""""""""""Gmail
+"let g:gmail_imap = 'imap.googlemail.com:993'
+"let g:gmail_smtp = 'smtp.googlemail.com:465'
+"let g:gmail_user_name = 'diego.lendoiro@openhost.es'
+""""""""""""""""""""""""""""""""""""HARDWAY
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
 inoremap  <Left>   <NOP>
