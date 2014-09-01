@@ -21,6 +21,7 @@ Plugin 'gmarik/vundle'
 "Bundles to install
 Plugin 'tpope/vim-sensible'
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-endwise'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'puppetlabs/puppet-syntax-vim'
@@ -39,6 +40,8 @@ Plugin 'pld-linux/vim-syntax-vcl'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neomru.vim'
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
 
 filetype plugin indent on
 "filetype plugin indent on
@@ -59,6 +62,8 @@ let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 """"""""""""""""""""""""""""""""""""MAPPINGS
 map <F5> :NERDTreeToggle .<CR>
 map <F8> :SyntasticCheck<CR>
+"make Y to perform like C or D
+map Y y$
 ""Open tag under cursor in new tab
 map <C-T> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 "Switch between buffers
@@ -77,7 +82,7 @@ cnoremap <C-n> <Down>
 """"""""""""""""""""""""""""""""""""Colors
 set t_Co=256
 set background=dark 
-""let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 colorscheme solarized
 "let g:molokai_original = 1
 "let g:rehash256 = 1
@@ -163,10 +168,6 @@ nnoremap <silent> <Leader>r :Unite -silent -buffer-name=recent -auto-resize file
 "maps \b to navigate open buffers
 nnoremap <Leader>b :Unite -silent -buffer-name=buffers -auto-resize buffer<cr>
 """"""""""""""""""""""""""""""""""""Unite
-""""""""""""""""""""""""""""""""""""Gmail
-"let g:gmail_imap = 'imap.googlemail.com:993'
-"let g:gmail_smtp = 'smtp.googlemail.com:465'
-"let g:gmail_user_name = 'diego.lendoiro@openhost.es'
 """"""""""""""""""""""""""""""""""""HARDWAY
 inoremap  <Up>     <NOP>
 inoremap  <Down>   <NOP>
