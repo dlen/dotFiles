@@ -8,6 +8,8 @@ set cursorline
 set nocp
 ""Set nerdtree to be launched on start and cursor set to editing window
 autocmd VimEnter * wincmd p
+""Remove any trailing whitespace that is in the file
+autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
 """"""""""""""""""""""""""""""""""""mouse
 "allows mouse selection to go into visual mode and more
 set mouse=a
@@ -35,13 +37,8 @@ Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'rodjek/vim-puppet'
 Plugin 'godlygeek/tabular'
 Plugin 'Valloric/YouCompleteMe'
-"Plugin 'tomasr/molokai'
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'LaTeX-Suite-aka-Vim-LaTeX'
 Plugin 'terryma/vim-multiple-cursors'
-"Plugin 'tejr/vim-nagios'
-"Plugin 'yuratomo/gmail.vim'
-"Plugin 'pld-linux/vim-syntax-vcl'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'Shougo/neomru.vim'
@@ -61,7 +58,7 @@ let g:syntastic_auto_loc_list = 2
 let g:syntastic_mode_map = { 'mode': 'active',
                              \ 'active_filetypes': [],
                              \ 'passive_filetypes': ['puppet'] }
-"set statusline+=%#warningmsg# 
+"set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 """"""""""""""""""""""""""""""""""""End syntastic
 """"""""""""""""""""""""""""""""""""Youcompleteme
@@ -106,7 +103,7 @@ noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 """"""""""""""""""""""""""""""""""""END MAPPINGS
 """"""""""""""""""""""""""""""""""""Colors
-set background=dark 
+set background=dark
 colorscheme solarized
 """"""""""""""""""""""""""""""""""""Colors
 " Use the same symbols as TextMate for tabstops and EOLs
@@ -116,7 +113,7 @@ colorscheme solarized
 "allow to navigate unsaved buffers without prompting any error or warning
 set hidden
 """"""""""""""""""""""""""""""""""""Tabs
-"Insert spaces instead of tabs it inserts (if defined) 'softtabstop' space chars 
+"Insert spaces instead of tabs it inserts (if defined) 'softtabstop' space chars
 set expandtab
 "Tab equivalent to n spaces
 set tabstop=2
@@ -181,7 +178,7 @@ function! s:unite_settings()
   inoremap <silent><buffer><expr> <C-s> unite#do_action('vsplit')
   imap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
-"maps \e to open unite fuzzy finding 
+"maps \e to open unite fuzzy finding
 nnoremap <Leader>e :Unite -silent -buffer-name=files -auto-resize -start-insert file_rec/async:!<CR>
 "maps \ag to open ag content fuzzy finding
 nnoremap <Leader>ag :Unite -silent -start-insert grep:.<CR>
