@@ -6,6 +6,9 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
+ZSH_TMUX_AUTOSTART="true"
+ZSH_TMUX_AUTOQUIT="true"
+ZSH_TMUX_AUTOCONNECT="false"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -45,14 +48,14 @@ CASE_SENSITIVE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode)
+plugins=(git vi-mode tmux)
 #plugins=(git )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/java/jre/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/diego/.gem/ruby/2.1.0/bin"
+#export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/java/jre/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/diego/.gem/ruby/2.1.0/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -81,6 +84,7 @@ export TERM='xterm'
 eval `dircolors ~/.dir_colors`
 ###powerline
 #. /usr/share/zsh/site-contrib/powerline.zsh
+#Tmux on start
 #Tmux 256 color
 alias tmux="TERM=screen-256color-bce tmux"
 alias tmuxinator="TERM=screen-256color-bce tmuxinator"
@@ -90,3 +94,6 @@ source $HOME/.aliases_priv
 alias rspec="rspec --color"
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+#source ~/.amazon_shortcuts.zsh
+#servername for vim
+alias vim='vim --servername VIM'

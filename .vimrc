@@ -6,10 +6,17 @@ set number
 set cursorline
 "Setting no vim compat
 set nocp
+"Setting no swapfile
+set noswapfile
+"set lazyredraw to scroll faster
+set ttyfast
+set lazyredraw
 ""Set nerdtree to be launched on start and cursor set to editing window
-autocmd VimEnter * wincmd p
+"autocmd VimEnter * wincmd p
 ""Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
+""Let netrw ignore hidden files
+let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 """"""""""""""""""""""""""""""""""""mouse
 "allows mouse selection to go into visual mode and more
 set mouse=a
@@ -27,11 +34,12 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-dispatch'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/syntastic'
 Plugin 'puppetlabs/puppet-syntax-vim'
 Plugin 'rodjek/vim-puppet'
@@ -46,12 +54,17 @@ Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
 Plugin 'vim-scripts/JSON.vim'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'vim-scripts/Vim-R-plugin'
 
 filetype plugin indent on
 "filetype plugin indent on
 "Matchit is included in vimcore since vim 6.0 this activates it:
 "(runtime == source+relative path to vim installation dir)
 runtime macros/matchit.vim
+"render man pages
+runtime ftplugin/man.vim
+
 """"""""""""""""""""""""""""""""""""Syntastic
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_auto_loc_list = 2
@@ -64,7 +77,8 @@ let g:syntastic_mode_map = { 'mode': 'active',
 """"""""""""""""""""""""""""""""""""Youcompleteme
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 """"""""""""""""""""""""""""""""""""MAPPINGS
-map <F5> :NERDTreeToggle .<CR>
+"map <F5> :NERDTreeToggle .<CR>
+"noremap <leader>f :NERDTreeFind<CR>
 map <F8> :SyntasticCheck<CR>
 "make Y to perform like C or D
 map Y y$
@@ -75,8 +89,8 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
-"macro for pasting from clipboard (cp = clipboard paste)
-nnoremap cp "*p
+"macro for copying filename to clipboard
+nmap <silent> cp :let @+=expand("%")<CR>
 "hlsearch disable with space
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 "Search in command history without losing history filter
@@ -92,15 +106,8 @@ map <C-l> <C-w>l
 set splitbelow
 set splitright
 """"""""""""""""""""""""""""""""""""Open splits down and right
-""""""""""""""""""""""""""""""""""""HARDWAY
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
+""""""""""""""""""""""""""""""""""""change current working dir
+nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 """"""""""""""""""""""""""""""""""""END MAPPINGS
 """"""""""""""""""""""""""""""""""""Colors
 set background=dark
@@ -127,7 +134,7 @@ set incsearch
 "lines wont break screen
 set nowrap
 "Export python path for powerline
-let $PYTHONPATH="/usr/lib/python3.4/site-packages"
+let $PYTHONPATH="/usr/lib/python3.5/site-packages"
 "always show powerline
 set laststatus=2
 """""""""""""""""""""""""""""""""""""Powerline
@@ -159,7 +166,7 @@ nmap <leader>tb :Tabularize /^[^(]*\zs(/<CR>
 """"""""""""""""""""""""""""""""""""Unite
 "Set ag as default finder
 let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+let g:unite_source_grep_default_opts = '--follow --hidden --nogroup --nocolor --column'
 let g:unite_source_grep_recursive_opt = ''
 "Set unite to open window in bottom right
 let g:unite_split_rule = "botright"
@@ -170,6 +177,7 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "Set sort method
 call unite#filters#sorter_default#use(['sorter_rank'])
 let g:unite_matcher_fuzzy_max_input_length = 60
+let g:unite_source_rec_max_cache_files = 99999
 " In window settings
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
@@ -179,11 +187,17 @@ function! s:unite_settings()
   imap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 "maps \e to open unite fuzzy finding
-nnoremap <Leader>e :Unite -silent -buffer-name=files -auto-resize -start-insert file_rec/async:!<CR>
+nnoremap <Leader>e :Unite -silent -buffer-name=files -auto-resize -start-insert buffer file_rec/async:!<CR>
 "maps \ag to open ag content fuzzy finding
 nnoremap <Leader>ag :Unite -silent -start-insert grep:.<CR>
 "maps \r to open recent buffers open
-nnoremap <silent> <Leader>r :Unite -silent -buffer-name=recent -auto-resize file_mru<cr>
+nnoremap <silent> <Leader>re :Unite -silent -buffer-name=recent -auto-resize file_mru<cr>
 "maps \b to navigate open buffers
 nnoremap <Leader>b :Unite -silent -buffer-name=buffers -auto-resize buffer<cr>
 """"""""""""""""""""""""""""""""""""Unite
+""""""""""""""""""""""""""""""""""""R-plugin
+"disable _ for inserting <-
+let vimrplugin_assign = 0
+""""""""""""""""""""""""""""""""""""R-plugin
+""""""""""""""""""""""""""""""""""""Fugitive
+nmap <leader>g :Gstatus<CR>
