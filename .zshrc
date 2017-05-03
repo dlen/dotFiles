@@ -90,10 +90,11 @@ alias tmux="TERM=screen-256color-bce tmux"
 alias tmuxinator="TERM=screen-256color-bce tmuxinator"
 ####aliases
 source $HOME/.aliases_priv
+source $HOME/.kubernetes_shortcuts/shortcuts.zsh
 #####Rspec alias
 alias rspec="rspec --color"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+export PATH="$PATH:$HOME/.rvm/bin:$HOME/.local/bin" # Add RVM to PATH for scripting
 #source ~/.amazon_shortcuts.zsh
 #servername for vim
 alias vim='vim --servername VIM'
