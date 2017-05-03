@@ -35,6 +35,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-unimpaired'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'kana/vim-textobj-user'
 Plugin 'nelstrom/vim-textobj-rubyblock'
@@ -55,7 +56,9 @@ Plugin 'xolox/vim-misc'
 Plugin 'vim-scripts/JSON.vim'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'vim-scripts/Vim-R-plugin'
+Plugin 'hashivim/vim-terraform'
 
 filetype plugin indent on
 "filetype plugin indent on
@@ -75,7 +78,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
 "set statusline+=%{SyntasticStatuslineFlag()}
 """"""""""""""""""""""""""""""""""""End syntastic
 """"""""""""""""""""""""""""""""""""Youcompleteme
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
 """"""""""""""""""""""""""""""""""""MAPPINGS
 "map <F5> :NERDTreeToggle .<CR>
 "noremap <leader>f :NERDTreeFind<CR>
@@ -177,7 +180,7 @@ call unite#filters#matcher_default#use(['matcher_fuzzy'])
 "Set sort method
 call unite#filters#sorter_default#use(['sorter_rank'])
 let g:unite_matcher_fuzzy_max_input_length = 60
-let g:unite_source_rec_max_cache_files = 99999
+"let g:unite_source_rec_max_cache_files = 99999
 " In window settings
 autocmd FileType unite call s:unite_settings()
 function! s:unite_settings()
@@ -187,7 +190,7 @@ function! s:unite_settings()
   imap <buffer> <ESC> <Plug>(unite_exit)
 endfunction
 "maps \e to open unite fuzzy finding
-nnoremap <Leader>e :Unite -silent -buffer-name=files -auto-resize -start-insert buffer file_rec/async:!<CR>
+nnoremap <Leader>e :Unite -silent -force-redraw -buffer-name=files -auto-resize -start-insert buffer file_rec/async:!<CR>
 "maps \ag to open ag content fuzzy finding
 nnoremap <Leader>ag :Unite -silent -start-insert grep:.<CR>
 "maps \r to open recent buffers open
