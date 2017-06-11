@@ -91,6 +91,7 @@ alias tmuxinator="TERM=screen-256color-bce tmuxinator"
 ####aliases
 source $HOME/.aliases_priv
 source $HOME/.kubernetes_shortcuts/shortcuts.zsh
+source $HOME/.gce_shortcuts/shortcuts.zsh
 #####Rspec alias
 alias rspec="rspec --color"
 
