@@ -48,7 +48,7 @@ CASE_SENSITIVE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode tmux)
+plugins=(git vi-mode)
 #plugins=(git )
 
 source $ZSH/oh-my-zsh.sh
@@ -59,43 +59,27 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-fi
+export EDITOR='vim'
+export VISUAL='vim'
 
+export TERM='xterm-256color'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 #
-#Pkgfile hook
-#Command not found suggestions
-source /usr/share/doc/pkgfile/command-not-found.zsh
-#Vim inner text object and surround plugin for terminal vim mode
-source ~/.oh-my-zsh/plugins/opp.zsh/opp.zsh
-source ~/.oh-my-zsh/plugins/opp.zsh/opp/*.zsh
 bindkey '^[[A' up-line-or-search
 bindkey '^[[B' down-line-or-search
 ##Reverse incremental search
 bindkey '^R' history-incremental-search-backward
-#TERM setting when not running tmux or tmuxinator
-export TERM='xterm'
-eval `dircolors ~/.dir_colors`
-###powerline
-#. /usr/share/zsh/site-contrib/powerline.zsh
-#Tmux on start
-#Tmux 256 color
-alias tmux="TERM=screen-256color-bce tmux"
-alias tmuxinator="TERM=screen-256color-bce tmuxinator"
 ####aliases
-source $HOME/.aliases_priv
-source $HOME/.kubernetes_shortcuts/shortcuts.zsh
-source $HOME/.gce_shortcuts/shortcuts.zsh
+#source $HOME/.aliases_priv
+#source $HOME/.kubernetes_shortcuts/shortcuts.zsh
+#source $HOME/.gce_shortcuts/shortcuts.zsh
 #####Rspec alias
 alias rspec="rspec --color"
-
-export PATH="$PATH:$HOME/.rvm/bin:$HOME/.local/bin" # Add RVM to PATH for scripting
 #source ~/.amazon_shortcuts.zsh
 #servername for vim
 alias vim='vim --servername VIM'
+source /usr/share/zsh/plugins/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
