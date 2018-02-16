@@ -59,6 +59,7 @@ Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'vim-scripts/Vim-R-plugin'
 Plugin 'hashivim/vim-terraform'
+Plugin 'vim-scripts/bats.vim'
 
 filetype plugin indent on
 "filetype plugin indent on
