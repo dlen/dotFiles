@@ -7,6 +7,7 @@ zplug 'joel-porquet/zsh-dircolors-solarized', from:github
 zplug 'zsh-users/zsh-syntax-highlighting', from:github
 zplug 'zsh-users/zsh-autosuggestions', from:github
 zplug 'modules/tmux', from:prezto
+zplug 'modules/history', from:prezto
 
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 zplug "jonmosco/kube-ps1", from:github
