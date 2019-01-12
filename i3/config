@@ -189,4 +189,4 @@ exec --no-startup-id compton -b
 
 # Keyboard
 exec "setxkbmap -layout us,es -variant mac"
-exec "setxkbmap -option 'grp:ctrl_alt_toggle'"
+exec "setxkbmap -option 'grp:alt_shift_toggle'"
