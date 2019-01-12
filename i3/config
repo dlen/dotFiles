@@ -186,3 +186,7 @@ bindsym XF86AudioPrev exec playerctl previous
 # Autostart
 exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/gnome/Icescape.jpg
 exec --no-startup-id compton -b
+
+# Keyboard
+exec "setxkbmap -layout us,es -variant mac"
+exec "setxkbmap -option 'grp:ctrl_alt_toggle'"
