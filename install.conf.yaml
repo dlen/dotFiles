@@ -13,6 +13,8 @@
     ~/.zsh: zsh
     ~/.zshrc: zshrc
     ~/.zplug: zplug
+    ~/.config/compton.conf: compton/compton.conf
+    ~/.config/i3/config: i3/config
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
