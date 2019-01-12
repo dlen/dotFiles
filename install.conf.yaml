@@ -14,7 +14,13 @@
     ~/.zshrc: zshrc
     ~/.zplug: zplug
     ~/.config/compton.conf: compton/compton.conf
-    ~/.config/i3/config: i3/config
+    ~/.config/i3/config:
+      create: true
+      path: i3/config
+    ~/.config/rofi/config:
+      create: true
+      path: rofi/config
+
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
