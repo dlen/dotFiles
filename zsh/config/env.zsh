@@ -7,3 +7,6 @@ export PATH="$PATH:$HOME/go/bin:$HOME/.yarn/bin"
 
 # Terminal type
 export TERM='xterm-256color'
+
+# Colorize output
+alias ls='ls --color=auto'
