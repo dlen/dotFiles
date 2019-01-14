@@ -8,5 +8,3 @@ zplug 'zsh-users/zsh-syntax-highlighting', from:github
 zplug 'zsh-users/zsh-autosuggestions', from:github
 zplug 'modules/tmux', from:prezto
 zplug 'modules/history', from:prezto
-
-zplug "jonmosco/kube-ps1", from:github
