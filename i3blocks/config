@@ -29,10 +29,19 @@ separator_block_width=15
 markup=none
 
 
+# Generic media player support
+#
+# This displays "ARTIST - SONG" if a music is playing.
+# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
+[mediaplayer]
+instance=spotify
+interval=5
+signal=10
+
 # Shows kubernetes current context
 #
-[kubernetes]
-interval=10
+#[kubernetes]
+#interval=10
 
 # Volume indicator
 #
@@ -43,36 +52,6 @@ interval=10
 label=
 interval=once
 signal=1
-
-#[mail]
-#command=echo -e " $(sh ~/.config/i3/gmail.sh)"
-#interval=1
-#color=#7F00FF
-
-#[microphone]
-#label=
-#interval=5
-#command=~/.config/i3/scripts/microphone.sh
-
-# Volume indicator
-#
-# The first parameter sets the step (and units to display)
-# The second parameter overrides the mixer selection
-# See the script for details.
-#[volume]
-#label=VOL
-#label=♪
-#instance=Master
-#instance=PCM
-#interval=once
-#signal=10
-
-# Volumen
-#[audio]
-#label=
-#interval=once
-#command=~/.config/i3/scripts/audio1.sh
-#color=#f19950
 
 # Memory usage
 #
@@ -170,15 +149,6 @@ interval=30
 command= date '+%d/%m/%Y %H:%M'
 label=
 interval=1
-
-# Generic media player support
-#
-# This displays "ARTIST - SONG" if a music is playing.
-# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
-[mediaplayer]
-instance=spotify
-interval=5
-signal=10
 
 # Key indicators
 #
