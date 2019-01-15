@@ -184,9 +184,13 @@ bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+# Screenlock
+bindsym $mod+Shift+b exec i3lock -t -i ~/Pictures/adventure_time.png
+
 # Autostart
 exec_always --no-startup-id feh --bg-fill /usr/share/backgrounds/gnome/Icescape.jpg
 exec --no-startup-id compton -b
+exec --no-startup-id auto-xflux
 
 # Keyboard
 exec "setxkbmap -layout us,es -variant mac"
