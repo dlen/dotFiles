@@ -58,6 +58,8 @@ Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'hashivim/vim-terraform'
 Plugin 'vim-scripts/bats.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 filetype plugin indent on
 "Matchit is included in vimcore since vim 6.0 this activates it:
@@ -72,8 +74,15 @@ let g:vue_disable_pre_processors=1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_auto_loc_list = 2
 """"""""""""""""""""""""""""""""""""End syntastic
+""""""""""""""""""""""""""""""""""""Ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
 """"""""""""""""""""""""""""""""""""Youcompleteme
 let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 """"""""""""""""""""""""""""""""""""MAPPINGS
 ""Open tag under cursor in new tab
 map <C-T> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
