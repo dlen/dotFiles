@@ -12,5 +12,9 @@ zplug load
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
-autoload -U colors; colors
 RPROMPT='%{$fg[blue]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}'
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle :compinstall filename '/home/diego/.zshrc'
+
+autoload -Uz compinit; colors; colors
+compinit

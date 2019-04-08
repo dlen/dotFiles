@@ -13,20 +13,12 @@
     ~/.zsh: zsh
     ~/.zshrc: zshrc
     ~/.zplug: zplug
-    ~/.config/compton.conf: compton/compton.conf
-    ~/.config/i3/config:
+    ~/.config/sway/config:
       create: true
-      path: i3/config
+      path: sway/config
     ~/.config/rofi/config:
       create: true
       path: rofi/config
-    ~/.config/i3blocks/config:
-      create: true
-      path: i3blocks/config
-    ~/.config/i3blocks/blocks:
-      create: true
-      path: i3blocks/i3blocks-contrib
-
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
