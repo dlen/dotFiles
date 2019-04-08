@@ -19,6 +19,9 @@
     ~/.config/rofi/config:
       create: true
       path: rofi/config
+    ~/.config/redshift/config:
+      create: true
+      path: redshift/config
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
