@@ -22,6 +22,10 @@ set $menu dmenu_path | rofi -show combi | xargs swaymsg exec
 
 # Autostart
 exec --no-startup-id mako
+exec redshift -c ~/.config/redshift/config
+
+# Keyboard
+exec_always "setxkbmap -option 'grp:alt_shift_toggle' -layout us,es"
 
 ### Output configuration
 #
