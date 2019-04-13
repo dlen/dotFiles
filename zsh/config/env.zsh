@@ -3,8 +3,7 @@ export EDITOR=vim
 export VISUAL=vim
 
 # Golang path and yarn
-export PATH="$PATH:$HOME/go/bin:$HOME/.yarn/bin:/home/diego/.local/bin:$HOME/.node/bin"
-export NODE_PATH="$HOME/.node/lib/node_modules:$NODE_PATH"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Terminal type
 export TERM='xterm-256color'

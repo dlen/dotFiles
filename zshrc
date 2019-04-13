@@ -18,3 +18,8 @@ zstyle :compinstall filename '/home/diego/.zshrc'
 
 autoload -Uz compinit; colors; colors
 compinit
+
+alias firefox="GDK_BACKEND=wayland firefox"
+alias slack="XDG_CURRENT_DESKTOP=Unity slack"
+#asdf version manager source
+. $HOME/.asdf/asdf.sh
