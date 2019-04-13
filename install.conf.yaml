@@ -8,7 +8,6 @@
     ~/.tmux: tmux/tmux
     ~/.tmux.conf: tmux/tmux/.tmux.conf
     ~/.tmux.conf.local: tmux/tmux.conf.local
-    ~/.vim: vim
     ~/.vimrc: vimrc
     ~/.zsh: zsh
     ~/.zshrc: zshrc
@@ -22,6 +21,15 @@
     ~/.config/redshift/config:
       create: true
       path: redshift/config
+    ~/.config/waybar/config:
+      create: true
+      path: waybar/config
+    ~/.config/waybar/style.css:
+      create: true
+      path: waybar/style.css
+    ~/.config/waybar/mediaplayer.sh:
+      create: true
+      path: waybar/mediaplayer.sh
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

@@ -18,14 +18,11 @@ set $right l
 set $term terminator
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | rofi -show combi | xargs swaymsg exec
+set $menu dmenu_path | rofi -combi-modi 'window,drun,run' -run-list-command ". ~/.zsh_aliases_functions.sh" -run-command "/bin/zsh -i -c '{cmd}'" -show combi -modi combi | xargs swaymsg exec
 
 # Autostart
 exec --no-startup-id mako
 exec redshift -c ~/.config/redshift/config
-
-# Keyboard
-exec_always "setxkbmap -option 'grp:alt_shift_toggle' -layout us,es"
 
 ### Output configuration
 #
@@ -37,8 +34,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
-output "eDP-1" scale 1.3
-
+output "eDP-1" scale 1.4 position 0 0
 ### Idle configuration
 #
 # Example configuration:
