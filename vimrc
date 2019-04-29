@@ -60,6 +60,8 @@ Plugin 'hashivim/vim-terraform'
 Plugin 'vim-scripts/bats.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 filetype plugin indent on
 "Matchit is included in vimcore since vim 6.0 this activates it:
