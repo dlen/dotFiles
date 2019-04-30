@@ -44,8 +44,6 @@ Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'tpope/vim-vinegar'
 Plugin 'scrooloose/syntastic'
-Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'rodjek/vim-puppet'
 Plugin 'godlygeek/tabular'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'altercation/vim-colors-solarized'
@@ -147,28 +145,29 @@ nmap <leader>t( :Tabularize /^[^(]*\zs(/<CR>
 nmap <leader>tb :Tabularize /^[^(]*\zs(/<CR>
 """"""""""""""""""""""""""""""""""""Tabularize
 """"""""""""""""""""""""""""""""""""fzf
-"maps \e to open unite fuzzy finding
+"maps \e to open fuzzy finding
 nnoremap <Leader>e :Files<CR>
 "maps \ag to open ag content fuzzy finding
-nnoremap <Leader>ag :Ag<CR>
-" Augmenting Ag command using fzf#vim#with_preview function
-"   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
-"     * For syntax-highlighting, Ruby and any of the following tools are required:
-"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
-"       - CodeRay: http://coderay.rubychan.de/
-"       - Rouge: https://github.com/jneen/rouge
-"
-"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
-"   :Ag! - Start fzf in fullscreen and display the preview window above
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+nnoremap <Leader>ag :Rg<CR>
+" Adds preview to ripgrep search
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
 "maps \b to navigate open buffers
 nnoremap <Leader>b :Buffers<CR>
 """"""""""""""""""""""""""""""""""""fzf
 """"""""""""""""""""""""""""""""""""Fugitive
 nmap <leader>g :Gstatus<CR>
+" Open commits on file in quickfix with fzf
+nmap <leader>c :BCommits<CR>
+" Opens commits log
+nmap <leader>C :Commits<CR>
 """"""""""""""""""""""""""""""""""""END MAPPINGS
+
