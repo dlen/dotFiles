@@ -27,7 +27,7 @@ exec redshift -c ~/.config/redshift/config
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output "*" bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -201,6 +201,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+# Screenshots
+ bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/screenshot-"$(date "+%d-%m-%y-%H%M")".png
 
 # Brightness controls
  bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -210,6 +212,13 @@ bindsym $mod+r mode "resize"
  bindsym XF86MonBrightnessDown exec xbacklight -dec 5
  bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 
+# MediaPlayer control
+ bindsym $mod+p exec playerctl -a play-pause
+ bindsym $mod+Shift+n exec playerctl -a previous
+ bindsym $mod+n exec playerctl -a next
+
+# Lock screen
+ bindsym $mod+Shift+b exec swaylock -f -c 000000
 #
 # Status Bar:
 #
@@ -228,6 +237,5 @@ bar {
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
-
 
 include /etc/sway/config.d/*
