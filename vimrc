@@ -1,5 +1,3 @@
-"Syntax highlight
-syntax enable
 ""Set line numbering
 set number
 "Set line highlight
@@ -13,8 +11,6 @@ set ttyfast
 set lazyredraw
 ""Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
-" Vue syntax highligting
-autocmd BufNewFile,BufRead *.vue set ft=vue
 ""Let netrw ignore hidden files
 let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 """"""""""""""""""""""""""""""""""""mouse
@@ -22,67 +18,44 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 set mouse=a
 """"""""""""""""""""""""""""""""""""vundle
 "Vundle installs plugins configured in vimrc with :BundleInstall
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call plug#begin('~/.vim/plugged')
 """""""""""""""""""""""""""""""""""""Plugins
-"Required Bundle
-Plugin 'gmarik/vundle'
 "Bundles to install
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'posva/vim-vue'
-Plugin 'chrisbra/Colorizer'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'tpope/vim-vinegar'
-Plugin 'scrooloose/syntastic'
-Plugin 'godlygeek/tabular'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'junegunn/fzf.vim'
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
-Plugin 'vim-scripts/JSON.vim'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
-Plugin 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
-Plugin 'hashivim/vim-terraform'
-Plugin 'vim-scripts/bats.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
+Plug 'junegunn/gv.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'thoughtbot/vim-rspec'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'godlygeek/tabular'
+Plug 'chrisbra/Colorizer'
+Plug 'altercation/vim-colors-solarized'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plug 'hashivim/vim-terraform'
+Plug 'vim-scripts/bats.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'wakatime/vim-wakatime'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
 
-filetype plugin indent on
-"Matchit is included in vimcore since vim 6.0 this activates it:
-runtime macros/matchit.vim
 "render man pages
 runtime ftplugin/man.vim
 
-""""""""""""""""""""""""""""""""""""Vue
-"disable check pre_processors to fix slowlyness
-let g:vue_disable_pre_processors=1
-""""""""""""""""""""""""""""""""""""Syntastic
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_auto_loc_list = 2
-""""""""""""""""""""""""""""""""""""End syntastic
 """"""""""""""""""""""""""""""""""""Ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-""""""""""""""""""""""""""""""""""""Youcompleteme
-let g:ycm_path_to_python_interpreter = '/usr/bin/python'
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
 """"""""""""""""""""""""""""""""""""MAPPINGS
 ""Open tag under cursor in new tab
 map <C-T> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
@@ -107,12 +80,9 @@ set splitright
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 """"""""""""""""""""""""""""""""""""Colors
 set background=dark
+set t_Co=16
 colorscheme solarized
 """"""""""""""""""""""""""""""""""""Colors
-" Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
-"display hidden chars (tab and eol)
-"set list
 "allow to navigate unsaved buffers without prompting any error or warning
 set hidden
 """"""""""""""""""""""""""""""""""""Tabs
@@ -122,13 +92,12 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-"set autoindent
-set smarttab
 "enable hlsearch
 set hlsearch
-set incsearch
 "lines wont break screen
 set nowrap
+""""""""""""""""""""""""""""""""""""Terraform
+let g:terraform_align=1
 """"""""""""""""""""""""""""""""""""Tabularize
 " tabularize by selection in visual mode
 vmap <leader>t y:Tabularize /<C-R>"/<CR>
@@ -164,10 +133,16 @@ command! -bang -nargs=? -complete=dir Files
 nnoremap <Leader>b :Buffers<CR>
 """"""""""""""""""""""""""""""""""""fzf
 """"""""""""""""""""""""""""""""""""Fugitive
-nmap <leader>g :Gstatus<CR>
+nmap <leader>g :G<CR>
 " Open commits on file in quickfix with fzf
-nmap <leader>c :BCommits<CR>
+nmap <leader>gbc :BCommits<CR>
 " Opens commits log
-nmap <leader>C :Commits<CR>
+nmap <leader>gc :Commits<CR>
+nmap <leader>gp :Gpush origin<CR>
+""""""""""""""""""""""""""""""""""""Fugitive
+nmap <leader>T :terminal<CR>
+""""""""""""""""""""""""""""""""""""swaywm clipboard
+xnoremap "+y y:call system("wl-copy", @")<cr>
+nnoremap "+p :let @"=substitute(system("wl-paste --no-newline"), '<C-v><C-m>', '', 'g')<cr>p
+nnoremap "*p :let @"=substitute(system("wl-paste --no-newline --primary"), '<C-v><C-m>', '', 'g')<cr>p
 """"""""""""""""""""""""""""""""""""END MAPPINGS
-
