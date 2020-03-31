@@ -34,7 +34,7 @@ window#waybar {
     border-bottom: 3px solid #ffffff;
 }
 
-#clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #pulseaudio, #custom-media, #tray, #mode, #idle_inhibitor {
+#clock, #battery, #cpu, #memory, #temperature, #backlight, #network, #custom-vpn, #pulseaudio, #custom-media, #tray, #mode, #idle_inhibitor {
     padding: 0 10px;
     margin: 0 5px;
 }
@@ -83,12 +83,24 @@ window#waybar {
     background: #90b1b1;
 }
 
+#custom-vpn {
+    background: #2980b9;
+}
+
+#custom-vpn.active {
+    background: #2980b9;
+}
+
+#disk {
+    background: #f0932b;
+}
+
 #network {
     background: #2980b9;
 }
 
 #network.disconnected {
-    background: #f53c3c;
+    background: #2980b9;
 }
 
 #pulseaudio {

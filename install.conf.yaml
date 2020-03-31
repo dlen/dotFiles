@@ -30,6 +30,9 @@
     ~/.config/waybar/mediaplayer.sh:
       create: true
       path: waybar/mediaplayer.sh
+    ~/.config/waybar/vpn.sh:
+      create: true
+      path: waybar/vpn.sh
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
