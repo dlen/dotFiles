@@ -1,4 +1,4 @@
-# Load zplug package manager for zsh
+
 source ~/.zplug/init.zsh
 # Load plugins and theme
 source ~/.zsh/plugins/plugins.zsh
@@ -19,6 +19,5 @@ zstyle :compinstall filename '/home/diego/.zshrc'
 autoload -Uz compinit; colors; colors
 compinit
 
-alias slack="XDG_CURRENT_DESKTOP=Unity slack"
 #asdf version manager source
 . $HOME/.asdf/asdf.sh

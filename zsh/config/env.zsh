@@ -6,7 +6,7 @@ export VISUAL=vim
 export PATH="$PATH:$HOME/.local/bin"
 
 # Terminal type
-export TERM='xterm-256color'
+#export TERM='xterm-256color'
 
 # Colorize output
 alias ls='ls --color=auto'
