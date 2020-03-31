@@ -15,7 +15,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term terminator
+set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu dmenu_path | rofi -combi-modi 'window,drun,run' -run-list-command ". ~/.zsh_aliases_functions.sh" -run-command "/bin/zsh -i -c '{cmd}'" -show combi -modi combi | xargs swaymsg exec
