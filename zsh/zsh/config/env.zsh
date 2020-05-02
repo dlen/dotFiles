@@ -1,6 +1,6 @@
 # Default editor
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Golang path and yarn
 export PATH="$PATH:$HOME/.local/bin"

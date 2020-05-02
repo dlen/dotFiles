@@ -5,12 +5,15 @@
 - clean: ['~']
 
 - link:
+    ~/.config/alacritty/alacritty.yml: alacritty/alacritty.yml
     ~/.tmux: tmux/tmux
     ~/.tmux.conf: tmux/tmux/.tmux.conf
     ~/.tmux.conf.local: tmux/tmux.conf.local
-    ~/.vimrc: vimrc
-    ~/.zsh: zsh
-    ~/.zshrc: zshrc
+    ~/.vimrc: vim/vimrc
+    ~/.config/nvim/init.vim: nvim/init.vim
+    ~/.config/nvim/coc-settings.json: nvim/coc-settings.json
+    ~/.zsh: zsh/zsh
+    ~/.zshrc: zsh/zshrc
     ~/.zplug: zplug
     ~/.config/sway/config:
       create: true
@@ -18,6 +21,9 @@
     ~/.config/rofi/config:
       create: true
       path: rofi/config
+    ~/.config/rofi/wifi:
+      create: true
+      path: rofi/wifi
     ~/.config/redshift/config:
       create: true
       path: redshift/config
