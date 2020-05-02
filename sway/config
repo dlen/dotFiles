@@ -223,6 +223,9 @@ bindsym $mod+r mode "resize"
 
 # Lock screen
  bindsym $mod+Shift+b exec swaylock -f -c 000000
+
+# Wifi menu
+ bindsym $mod+Shift+w exec rofi-wifi-menu
 #
 # Status Bar:
 #
