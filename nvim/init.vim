@@ -186,3 +186,46 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+function! VisualSelection()
+    " Save register content and type.
+    let old_reg     = getreg('"')
+    let old_regmode = getregtype('"')
+
+    " Calling this function has ended visual mode, so it must be started
+    " again before the selection can be yanked into the unnamed register.
+    normal! gvy
+    let selection = @"
+
+    " Restore register content and type.
+    call setreg('"', old_reg, old_regmode)
+
+    return selection
+endfunction
+
+function! Escaped(text)
+    call inputsave()
+    let result = escape(a:text, '\\/.*$^~[]')
+    let result = substitute(result, "\n$", "", "")
+    let result = substitute(result, "\n", '\\n', "g")
+    call inputrestore()
+    return result
+endfunction
+
+" Use surfraw to search whatever is under the current visual selection
+function SurfRaw(...) range
+  if a:0 > 0
+    let elvi = a:1
+  else
+    let elvi = 'duckduckgo'
+  endif
+
+  execute "!sr " . elvi . " " . shellescape(@", 1)
+endfunction
+
+" Open the list of elvis before making search
+command! -bang -nargs=? SurfzRaw
+  \ call fzf#run({'source': "sr -elvi | awk '{print $1}'", 'sink': function('SurfRaw'), 'down': '30%'})
+
+vmap <leader>gS y :call SurfRaw()<CR>
+vmap <leader>gF y :SurfzRaw<CR>
