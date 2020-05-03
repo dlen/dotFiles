@@ -187,31 +187,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-function! VisualSelection()
-    " Save register content and type.
-    let old_reg     = getreg('"')
-    let old_regmode = getregtype('"')
-
-    " Calling this function has ended visual mode, so it must be started
-    " again before the selection can be yanked into the unnamed register.
-    normal! gvy
-    let selection = @"
-
-    " Restore register content and type.
-    call setreg('"', old_reg, old_regmode)
-
-    return selection
-endfunction
-
-function! Escaped(text)
-    call inputsave()
-    let result = escape(a:text, '\\/.*$^~[]')
-    let result = substitute(result, "\n$", "", "")
-    let result = substitute(result, "\n", '\\n', "g")
-    call inputrestore()
-    return result
-endfunction
-
 " Use surfraw to search whatever is under the current visual selection
 function SurfRaw(...) range
   if a:0 > 0
