@@ -66,6 +66,8 @@ Plug 'wakatime/vim-wakatime'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'plasticboy/vim-markdown'
+Plug 'christoomey/vim-tmux-navigator'
 "Plug 'jupyter-vim/jupyter-vim'
 call plug#end()
 
