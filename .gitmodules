@@ -10,3 +10,6 @@
 [submodule "i3blocks/i3blocks-contrib"]
 	path = i3blocks/i3blocks-contrib
 	url = https://github.com/vivien/i3blocks-contrib
+[submodule "zgen"]
+	path = zgen
+	url = https://github.com/tarjoilija/zgen

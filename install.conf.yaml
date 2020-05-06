@@ -14,7 +14,7 @@
     ~/.config/nvim/coc-settings.json: nvim/coc-settings.json
     ~/.zsh: zsh/zsh
     ~/.zshrc: zsh/zshrc
-    ~/.zplug: zplug
+    ~/.zgen: zgen
     ~/.config/sway/config:
       create: true
       path: sway/config
