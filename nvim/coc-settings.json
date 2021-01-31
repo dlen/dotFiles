@@ -1,5 +1,4 @@
 {
-  "python.jediEnabled": false,
   "python.venvPath": "/home/diego/.local/share/virtualenvs",
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
@@ -13,9 +12,40 @@
       "ignoredRootPaths": ["~"]
     },
     "dockerfile": {
-     "command": "docker-langserver",
-     "filetypes": ["dockerfile"],
-     "args": ["--stdio"]
+      "command": "docker-langserver",
+      "filetypes": ["dockerfile"],
+      "args": ["--stdio"]
     }
-  }
+  },
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck",
+    "email": "languagetool",
+    "markdown": ["languagetool", "markdownlint"],
+    "vimwiki": ["languagetool", "markdownlint"]
+  },
+  "diagnostic-languageserver.linters": {
+    "languagetool": {
+      "command": "languagetool",
+      "debounce": 200,
+      "args": ["-"],
+      "offsetLine": 0,
+      "offsetColumn": 0,
+      "sourceName": "languagetool",
+      "formatLines": 2,
+      "formatPattern": [
+        "^\\d+?\\.\\)\\s+Line\\s+(\\d+),\\s+column\\s+(\\d+),\\s+([^\\n]+)\nMessage:\\s+(.*)$",
+        {
+          "line": 1,
+          "column": 2,
+          "message": [4, 3]
+        }
+      ]
+    }
+  },
+  "rust-analyzer.procMacro.enable": true,
+  "rust-analyzer.cargo.loadOutDirsFromCheck": true
+  //"workspace.progressTarget": "statusline",
+  //"rust-analyzer.diagnostics.disabled": [
+  //  "macro-error"
+  //],
 }
