@@ -18,7 +18,10 @@ set $right l
 set $term alacritty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | rofi -combi-modi 'window,drun,run' -run-list-command ". ~/.zsh_aliases_functions.sh" -run-command "/bin/zsh -i -c '{cmd}'" -show combi -modi combi | xargs swaymsg exec
+#set $menu dmenu_path | rofi -combi-modi 'window,drun,run' -run-list-command ". ~/.zsh_aliases_functions.sh" -run-command "/bin/zsh -i -c '{cmd}'" -show combi -modi combi | xargs swaymsg exec
+set $menu dmenu_path | alacritty --class "launcher" -e sh -c 'compgen -c | grep -v fzf | sort -u | fzf --color=bw --reverse --border |xargs -r swaymsg -t command exec'
+for_window [app_id="^launcher$"] floating enable, border pixel 0
+#set $menu gnome-terminal --title Menu --hide-menubar --command "bash -c 'compgen -c | sort -u | fzf | xargs -r swaymsg -t command exec'", for_window [app_id="gnome-terminal-server" title="Menu"] border pixel 0, for_window [app_id="gnome-terminal-server" title="Menu"] floating enable
 
 # Autostart
 exec --no-startup-id mako
@@ -35,9 +38,20 @@ output "*" bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 output "eDP-1" {
-  scale 1.4
+#  resolution 2048x1152
   position 0 0
-  scale_filter smart
+  scale 1.4
+}
+
+output "DP-2" {
+  position 1828 0
+  scale 2
+}
+
+# monitor encima
+output "HDMI-A-1" {
+  position 0 1440
+  scale 1
 }
 ### Idle configuration
 #
@@ -57,16 +71,17 @@ exec swayidle -w \
 #
 # Example configuration:
 #
-input "2:7:SynPS/2_Synaptics_TouchPad" {
+input "1739:0:Synaptics_TM3289-021" {
     dwt enabled
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
 }
+
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
-
+xwayland enable
 ### Key bindings
 #
 # Basics:
@@ -206,7 +221,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Screenshots
- bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/screenshot-"$(date "+%d-%m-%y-%H%M")".png
+ bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Pictures/screenshot-"$(date "+%s")".png
 
 # Brightness controls
  bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
