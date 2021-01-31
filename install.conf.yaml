@@ -33,7 +33,7 @@
     ~/.config/waybar/style.css:
       create: true
       path: waybar/style.css
-    ~/.config/waybar/mediaplayer.sh:
+    ~/.config/waybar/mediaplayer.py:
       create: true
       path: waybar/mediaplayer.sh
     ~/.config/waybar/vpn.sh:
